@@ -2,7 +2,7 @@
 set -x
 
 target="cf api $API_ENDPOINT --skip-ssl-validation"
-#echo $target
+echo $target
 eval $target
 
 echo "Login....."
@@ -14,8 +14,12 @@ echo "Target Org and Space"
 org_space="cf target -o $ORG -s $SPACE"
 eval $org_space
 
+echo "CD to the project folder"
+path="cd resource-repo"
+eval $path
+
 echo "Build Jar by Gradle"
-gradle="./resource-repo/gradlew build"
+gradle="./gradlew build"
 
 echo "push the app"
 push="cf push java-demo-to-singpower -n $HOST -p build/libs/*.jar -m 512m"
