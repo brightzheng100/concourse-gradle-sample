@@ -1,0 +1,18 @@
+---
+platform: linux
+
+image: docker:///datianshi/cf-cli
+
+inputs:
+  - name: resource-repo
+
+run:
+  path: resource-repo/ci/cf_deployment.sh
+
+params:
+  API_ENDPOINT:
+  USERNAME:
+  PASSWORD:
+  ORG:
+  SPACE:
+  HOST:
