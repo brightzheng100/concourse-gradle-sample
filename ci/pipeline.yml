@@ -5,16 +5,6 @@ resources:
   source:
     uri: https://github.com/brightzheng100/concourse-gradle-sample.git
     
-- name: resource-deploy-web-app
-  type: cf
-  source:
-    api: {{cf-api}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-organization}}
-    space: {{cf-space}}
-    skip_cert_check: true
-    
 jobs:
 - name: job-deploy-java-app
   public: true
@@ -24,11 +14,10 @@ jobs:
     trigger: true
   - task: build-deploy-web-app
     file: resource-repo/ci/cf_deployment.yml
-    config:
-      params:
-        API_ENDPOINT: {{cf-api}}
-        USERNAME: {{cf-username}}
-        PASSWORD: {{cf-password}}
-        ORG: {{cf-organization}}
-        SPACE: {{cf-space}}
-        HOST: java-demo-to-singpower
+    params:
+      API_ENDPOINT: {{cf-api}}
+      USERNAME: {{cf-username}}
+      PASSWORD: {{cf-password}}
+      ORG: {{cf-organization}}
+      SPACE: {{cf-space}}
+      HOST: java-demo-to-singpower
