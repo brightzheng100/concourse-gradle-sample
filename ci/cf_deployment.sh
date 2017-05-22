@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -x
 
+export TERM=${TERM:-dumb}
+
 target="cf api $API_ENDPOINT --skip-ssl-validation"
 echo $target
 eval $target
