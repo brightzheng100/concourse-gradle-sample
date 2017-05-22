@@ -12,11 +12,3 @@ inputs:
 
 run:
   path: resource-repo/ci/cf_deployment.sh
-
-params:
-  API_ENDPOINT:
-  USERNAME:
-  PASSWORD:
-  ORG:
-  SPACE:
-  HOST:
