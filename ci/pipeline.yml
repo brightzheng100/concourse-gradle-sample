@@ -17,6 +17,7 @@ resources:
 jobs:
 - name: job-deploy-java-app
   public: true
+  serial: true
   plan:
   - get: resource-web-app
     trigger: true
