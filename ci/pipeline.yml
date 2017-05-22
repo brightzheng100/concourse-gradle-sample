@@ -26,4 +26,4 @@ jobs:
   - put: resource-deploy-web-app
     params:
       manifest: resource-web-app/manifest.yml
-      path: resource-web-app
+      path: build-test-web-app
