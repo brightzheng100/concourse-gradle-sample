@@ -1,15 +1,28 @@
 ---
 resources:
-- name: resource-tutorial
+- name: resource-web-app
   type: git
   source:
-    uri: https://github.com/rwinch/concourse-gradle-sample.git
-
+    uri: https://github.com/brightzheng100/concourse-gradle-sample.git
+- name: resource-deploy-web-app
+  type: cf
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-organization}}
+    space: {{cf-space}}
+    skip_cert_check: true
+    
 jobs:
-- name: job-test-app
+- name: job-deploy-java-app
   public: true
   plan:
-  - get: resource-tutorial
+  - get: resource-web-app
     trigger: true
-  - task: web-app-tests
-    file: resource-tutorial/ci/build.yml
+  - task: build-test-web-app
+    file: resource-web-app/ci/build.yml
+  - put: resource-deploy-web-app
+    params:
+      manifest: resource-web-app/manifest.yml
+      path: resource-web-app
