@@ -15,7 +15,7 @@ org_space="cf target -o $ORG -s $SPACE"
 eval $org_space
 
 echo "Build Jar by Gradle"
-gradle="./gradlew build"
+gradle="./resource-repo/gradlew build"
 
 echo "push the app"
 push="cf push java-demo-to-singpower -n $HOST -p build/libs/*.jar -m 512m"
